@@ -6,7 +6,7 @@ Music interface request at QQ music
 
 ## The preview image
 ### Home page
-![home](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue1.png)
+![home](previewImg/vue1.png)
 ### singer page
 ![singer](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue2.png)
 ### ranking page 
