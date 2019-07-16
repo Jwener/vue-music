@@ -17,21 +17,6 @@
         </ul>
       </li>
     </ul>
-    <!-- <div class="list-shortcut" @touchstart="onStartcutTouchStart" @touchmove.stop.prevent="onStartcutTouchMove">
-      <ul>
-        <li v-for="(item, index) in shortcutList"
-            :key="index"
-            class="item"
-            :data-index="index"
-            :class="{'current': currentIndex === index}"
-        >
-          {{item}}
-        </li>
-      </ul>
-    </div> -->
-    <!-- <div class="list-fixed" v-show="fixedTitle" ref="fixed">
-      <h1 class="fixed-title">{{fixedTitle}}</h1>
-    </div> -->
     <div v-show="!data.length" class="loading-container">
       <loading></loading>
     </div>
@@ -107,15 +92,6 @@ export default {
       this.scrollY = pos.y
     },
     _scrollTo(index) {
-      // console.log(index)
-      // if (!index && index !== 0) {
-      //   return
-      // }
-      // if (index < 0) {
-      //   index = 0
-      // } else if (index > this.listHeight.length - 2) {
-      //   index = this.listHeight.length - 2
-      // }
       this.scrollY = -this.listHeight[index]
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
 

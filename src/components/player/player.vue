@@ -149,18 +149,11 @@ export default {
     percent() {
       return this.currentTime / this.currentSong.duration
     },
-    // 引入mixin后去除
-    // iconMode() {
-    //   return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
-    // },
+
     ...mapGetters([
       'fullScreen',
       'currentIndex',
       'playing'
-      // 'currentSong',
-      // 'playlist',
-      // 'mode',
-      // 'sequenceList'
     ])
   },
   components: {
