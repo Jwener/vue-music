@@ -8,19 +8,19 @@ Music interface request at QQ music
 ### Home page
 ![home](previewImg/vue1.png)
 ### singer page
-![singer](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue2.png)
+![singer](previewImg/vue2.png)
 ### ranking page 
-![ranking](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue3.png)
+![ranking](previewImg/vue3.png)
 ### search page
-![search](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue4.png)
+![search](previewImg/vue4.png)
 ### personal center page
-![center](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue5.png)
+![center](previewImg/vue5.png)
 ### song single list page
-![song](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue6.png)
+![song](previewImg/vue6.png)
 ### play details page
-![detail](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue7.png)
+![detail](previewImg/vue7.png)
 ### lyrics page
-![lyrics](https://qcloudtest-1253615256.cos.ap-guangzhou.myqcloud.com/vueweb/vue8.png)
+![lyrics](previewImg/vue8.png)
 
 ## Build Setup
 
