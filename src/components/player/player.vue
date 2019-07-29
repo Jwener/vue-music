@@ -97,11 +97,11 @@
     </transition>
     <playlist ref="playlist"></playlist>
     <!-- currentSong.url -->
-    <audio :src="currentSong.url" ref="audio"
+    <audio :src="songSrc" ref="audio"
             @play="ready" @error="error"
             @timeupdate="updateTime"
             @ended="end"
-        ></audio>
+    ></audio>
   </div>
 </template>
 
@@ -127,13 +127,15 @@ export default {
   mixins: [playerMixin],
   data() {
     return {
+      songSrc: '',
       songReady: false,
       currentTime: 0,
       radius:32,
       currentLyric: null,
       currentLineNum: 0,
       currentShow: 'cd',
-      playingLyric: ''
+      playingLyric: '',
+      prevFlag: false
     }
   },
   computed: {
@@ -225,6 +227,7 @@ export default {
       if(!this.songReady) {
         return
       }
+      this.prevFlag = false
       if (this.playlist.length === 1) {
         this.loop()
         return
@@ -244,6 +247,7 @@ export default {
       if(!this.songReady) {
         return
       }
+      this.prevFlag = true
       if (this.playlist.length === 1) {
         this.loop()
         return
@@ -260,6 +264,7 @@ export default {
       this.songReady = false
     },
     end() {
+      this.currentTime = 0
       this.mode === playMode.loop ? this.loop() : this.next()
     },
     loop() {
@@ -273,11 +278,14 @@ export default {
       }
     },
     ready() {
+      if (!this.songSrc) return
       this.songReady = true
       this.savePlayHistory(this.currentSong)
     },
     error() {
       this.songReady = true // 歌曲失败url允许切换
+      if (!this.songSrc) return
+      this.prevFlag ? this.prev() : this.next()
     },
     updateTime(e) {
       this.currentTime = e.target.currentTime
@@ -301,25 +309,6 @@ export default {
         this.currentLyric.seek(currentTime * 1000)
       }
     },
-    // mixin
-    // changeMode() {
-    //   const mode = (this.mode + 1) % 3
-    //   this.setPlayMode(mode)
-    //   let list = null
-    //   if (mode === playMode.random) {
-    //     list = shuffle(this.sequenceList)
-    //   } else {
-    //     list = this.sequenceList
-    //   }
-    //   this.resetCurrentIndex(list)
-    //   this.setPlaylist(list)
-    // },
-    // resetCurrentIndex(list) {
-    //   let index = list.findIndex((item) => {
-    //     return item.id === this.currentSong.id
-    //   })
-    //   this.setCurrentIndex(index)
-    // },
     getLyric() {
       this.currentSong.getLyric().then((lyric) => {
         if (this.currentSong.lyric !== lyric) return
@@ -424,16 +413,26 @@ export default {
 
     ...mapMutations({
       setFullScreen: 'SET_FULL_SCREEN',
-      // setPlayingState: 'SET_PLAYING_STATE',
-      // setCurrentIndex: 'SET_CURRENT_INDEX',
-      // setPlayMode: 'SET_PLAY_MODE',
-      // setPlaylist: 'SET_PLAYLIST'
     }),
     ...mapActions([
       'savePlayHistory'
     ])
   },
   watch: {
+    currentIndex(newIndex) {
+      const songmid = this.playlist[newIndex].mid
+      getSongUrl(songmid).then(res => {
+        if (res.code === ERR_OK) {
+          const resUrl = res.req_0.data.midurlinfo[0].purl
+          const oneUrl = resUrl ?  resUrl : ''
+          const anotherUrl = `${res.req_0.data.midurlinfo[0].filename}?guid=3147422392&vkey=${res.req_0.data.midurlinfo[0].vkey}&uin=0&fromtag=66`
+          const songUrl = oneUrl || anotherUrl
+          // const url = `http://dl.stream.qqmusic.qq.com/${songUrl}`
+          const url = `http://dl.stream.qqmusic.qq.com/${songUrl}`
+          this.songSrc = url
+        }
+      })
+    },
     currentSong(newSong, oldSong) {
       if (!newSong.id) return
       if (newSong.id === oldSong.id) {
@@ -450,9 +449,11 @@ export default {
     },
     playing(newPlaying) {
       const audio = this.$refs.audio
-      this.$nextTick(() => {
-        newPlaying ? audio.play() : audio.pause()
-      })
+      console.error("用户未点击的播放会被浏览器警告")
+      newPlaying ? audio.play() : audio.pause()
+      // this.$nextTick(() => {
+      //   newPlaying ? audio.play() : audio.pause()
+      // })
     }
   }
 }

@@ -51,13 +51,14 @@ export default {
       let ret = []
       list.forEach(musicData => {
         if (musicData.songid && musicData.albumid) {
-           getSongUrl(musicData.songmid).then((res) => {
-            if (res.code === 0) {
-              const songurl = res.req_0.data.midurlinfo[0].purl
-              const url = `http://isure.stream.qqmusic.qq.com/${songurl}`
-              ret.push(createSong(musicData, url))
-            }
-          })
+          //  getSongUrl(musicData.songmid).then((res) => {
+          //   if (res.code === ERR_OK) {
+          //     const songurl = res.req_0.data.midurlinfo[0].purl
+          //     const url = `http://isure.stream.qqmusic.qq.com/${songurl}`
+          //     ret.push(createSong(musicData, url))
+          //   }
+          // })
+          ret.push(createSong(musicData))
         }
       })
       return ret
