@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import MusicList from '../../components/music-list/music-list'
 import {getMusicList} from '../../api/rank'
-import {getSongUrl} from '../../api/singer'
-import {createSong} from '../../common/js/song'
+// import {getSongUrl} from '../../api/singer'
+import { createSong } from '../../common/js/song'
 import { ERR_OK } from '../../api/config'
 export default {
   data() {
@@ -45,9 +45,7 @@ export default {
         return
       }
       getMusicList(this.topList.id).then((res) => {
-        if (res.code === ERR_OK)
-
-        this.songs = this._normalizeSongs(res.songlist)
+        if (res.code === ERR_OK) { this.songs = this._normalizeSongs(res.songlist) }
       })
     },
     _normalizeSongs(list) {

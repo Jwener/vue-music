@@ -29,9 +29,9 @@
 import Scroll from '../../base/scroll/scroll'
 import SongList from '../../base/song-list/song-list'
 import Loading from '../../base/loading/loading'
-import {prefixStyle} from '../../common/js/dom'
-import {mapActions} from 'vuex'
-import {playlistMixin} from '../../common/js/mixin'
+import { prefixStyle } from '../../common/js/dom'
+import { mapActions } from 'vuex'
+import { playlistMixin } from '../../common/js/mixin'
 
 const RESERVED_HEIGHT = 40
 const transform = prefixStyle('transform')
@@ -50,7 +50,9 @@ export default {
     },
     songs: {
       type: Array,
-      default: []
+      default: function() {
+        return []
+      }
     },
     title: {
       type: String,
@@ -87,7 +89,6 @@ export default {
       this.$refs.list.refresh()
     },
     scroll(pos) {
-
       this.scrollY = pos.y
     },
     back() {
@@ -105,9 +106,9 @@ export default {
       })
     },
     ...mapActions([
-        'selectPlay',
-        'randomPlay'
-      ])
+      'selectPlay',
+      'randomPlay'
+    ])
   },
   watch: {
     scrollY(newY) {
@@ -138,7 +139,6 @@ export default {
       }
       this.$refs.bgImage.style.zIndex = zIndex
       this.$refs.bgImage.style[transform] = `scale(${scale})`
-
     }
   }
 }

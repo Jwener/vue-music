@@ -23,18 +23,18 @@
 </template>
 
 <script>
-import {mapMutations, mapActions} from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import Scroll from '../../base/scroll/scroll'
 import Loading from '../../base/loading/loading'
 import NoResult from '../../base/no-result/no-ruselt'
 import Singer from '../../common/js/singer'
 import {search} from '../../api/search'
 import { ERR_OK } from '../../api/config'
-import {getSongUrl} from '../../api/singer'
+// import {getSongUrl} from '../../api/singer'
 import {createSong} from '../../common/js/song'
 
 const TYPE_SINGER = 'singer'
-const perpage =  20
+const perpage = 20
 export default {
   data() {
     return {
@@ -73,14 +73,13 @@ export default {
       return item.type === TYPE_SINGER ? `${item.singername}` : `${item.name}-${item.singer}`
     },
     searchMore() {
-      return
       if (!this.hasMore) {
         return
       }
-      this.page ++
+      this.page++
       search(this.query, this.page, this.showSinger, perpage).then((res) => {
         if (res.code === ERR_OK) {
-          let moreResult = this._getResult(res.data)
+          // let moreResult = this._getResult(res.data)
           this._checkMore(res.data)
         }
       })
@@ -92,9 +91,9 @@ export default {
           name: item.singername,
           mid: item.singermid
         })
-      this.$router.push({
-        path: `/search/${singer.singer_id}`
-      }),
+        this.$router.push({
+          path: `/search/${singer.singer_id}`
+        })
         this.setSinger(singer)
       } else {
         this.insertSong(item)
@@ -109,7 +108,7 @@ export default {
       this.hasMore = true
       this.$refs.suggest.scrollTo(0, 0)
       search(this.query, this.page, this.showSinger, perpage).then((res) => {
-        if (res.code ===  ERR_OK) {
+        if (res.code === ERR_OK) {
           this.result = this._getResult(res.data)
           this._checkMore(res.data)
         }

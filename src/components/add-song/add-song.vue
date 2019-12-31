@@ -79,7 +79,7 @@ export default {
     SearchList,
     TopTip
   },
-  computed:{
+  computed: {
     ...mapGetters([
       'playHistory'
     ])
@@ -105,7 +105,7 @@ export default {
       this.currentIndex = index
     },
     selectSong(song, index) {
-      if (index != 0) {
+      if (index !== 0) {
         this.insertSong(new Song(song))
         this.showTip()
       }

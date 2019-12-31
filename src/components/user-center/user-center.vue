@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Switches from '../../base/switches/switches'
 import Scroll from '../../base/scroll/scroll'
 import SongList from '../../base/song-list/song-list'
 import Song from '../../common/js/song'
-import {playlistMixin} from '../../common/js/mixin'
+import { playlistMixin } from '../../common/js/mixin'
 import NoResult from '../../base/no-result/no-ruselt'
 export default {
   mixins: [playlistMixin],

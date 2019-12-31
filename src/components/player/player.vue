@@ -106,19 +106,19 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations, mapActions} from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import animations from 'create-keyframe-animation'
-import {prefixStyle} from '../../common/js/dom'
+import { prefixStyle } from '../../common/js/dom'
 import ProgressBar from '../../base/progress-bar/progress-bar'
 import ProgressCircle from '../../base/progress-circle/progress-circle'
-import {playMode} from '../../common/js/config'
-import{shuffle} from '../../common/js/util.js'
+import { playMode } from '../../common/js/config'
+// import {shuffle} from '../../common/js/util.js'
 import Lyric from 'lyric-parser'
 import Scroll from '../../base/scroll/scroll'
 import Playlist from '../../components/playlist/playlist'
 import { ERR_OK } from '../../api/config'
-import {playerMixin} from '../../common/js/mixin'
-import {getSongUrl} from '../../api/singer'
+import { playerMixin } from '../../common/js/mixin'
+import { getSongUrl } from '../../api/singer'
 
 const transform = prefixStyle('transform')
 const transitionDuration = prefixStyle('transitionDuration')
@@ -130,7 +130,7 @@ export default {
       songSrc: '',
       songReady: false,
       currentTime: 0,
-      radius:32,
+      radius: 32,
       currentLyric: null,
       currentLineNum: 0,
       currentShow: 'cd',
@@ -182,10 +182,10 @@ export default {
           transform: `translate3d(${x}px,${y}px,0) scale(${scale})`
         },
         60: {
-           transform: `translate3d(0,0,0) scale(1.1)`
+          transform: `translate3d(0,0,0) scale(1.1)`
         },
         100: {
-           transform: `translate3d(0,0,0) scale(1)`
+          transform: `translate3d(0,0,0) scale(1)`
         }
       }
 
@@ -208,14 +208,14 @@ export default {
       this.$refs.cdWrapper.style.transition = `all 0.4s`
       const {x, y, scale} = this._getPosAndScale()
       this.$refs.cdWrapper.style[transform] = `translate3d(${x}px,${y}px,0) scale(${scale})`
-      this.$refs.cdWrapper.addEventListener('transitionend',done)
+      this.$refs.cdWrapper.addEventListener('transitionend', done)
     },
     afterLeave() {
       this.$refs.cdWrapper.style.transition = ''
       this.$refs.cdWrapper.style[transform] = ''
     },
     togglePlaying() {
-      if(!this.songReady) {
+      if (!this.songReady) {
         return
       }
       this.setPlayingState(!this.playing)
@@ -224,7 +224,7 @@ export default {
       }
     },
     next() {
-      if(!this.songReady) {
+      if (!this.songReady) {
         return
       }
       this.prevFlag = false
@@ -244,7 +244,7 @@ export default {
       this.songReady = false
     },
     prev() {
-      if(!this.songReady) {
+      if (!this.songReady) {
         return
       }
       this.prevFlag = true
@@ -254,7 +254,7 @@ export default {
       } else {
         let index = this.currentIndex - 1
         if (index === -1) {
-          index = this.playlist.length -1
+          index = this.playlist.length - 1
         }
         this.setCurrentIndex(index)
         if (!this.playing) {
@@ -387,11 +387,11 @@ export default {
       this.$refs.middelL.style.opacity = opacity
       this.$refs.middelL.style[transitionDuration] = `${time}ms`
     },
-    _pad(num, n=2) {
+    _pad(num, n = 2) {
       let len = num.toString().length
       while (len < n) {
         num = '0' + num
-        len ++
+        len++
       }
       return num
     },
@@ -403,7 +403,7 @@ export default {
       const width = window.innerWidth * 0.8
       const scale = targetWidth / width
       const x = -(window.innerWidth / 2 - paddingLeft)
-      const y = window.innerHeight - paddingTop - width/2 -paddingBottom
+      const y = window.innerHeight - paddingTop - width / 2 - paddingBottom
       return {
         x,
         y,
@@ -412,7 +412,7 @@ export default {
     },
 
     ...mapMutations({
-      setFullScreen: 'SET_FULL_SCREEN',
+      setFullScreen: 'SET_FULL_SCREEN'
     }),
     ...mapActions([
       'savePlayHistory'
@@ -424,7 +424,7 @@ export default {
       getSongUrl(songmid).then(res => {
         if (res.code === ERR_OK) {
           const resUrl = res.req_0.data.midurlinfo[0].purl
-          const oneUrl = resUrl ?  resUrl : ''
+          const oneUrl = resUrl || ''
           const anotherUrl = `${res.req_0.data.midurlinfo[0].filename}?guid=3147422392&vkey=${res.req_0.data.midurlinfo[0].vkey}&uin=0&fromtag=66`
           const songUrl = oneUrl || anotherUrl
           // const url = `http://dl.stream.qqmusic.qq.com/${songUrl}`
@@ -449,7 +449,7 @@ export default {
     },
     playing(newPlaying) {
       const audio = this.$refs.audio
-      console.error("用户未点击的播放会被浏览器警告")
+      console.error('用户未点击的播放会被浏览器警告')
       newPlaying ? audio.play() : audio.pause()
       // this.$nextTick(() => {
       //   newPlaying ? audio.play() : audio.pause()

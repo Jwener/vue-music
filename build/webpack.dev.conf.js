@@ -24,6 +24,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before: function(app, server) {
+
       app.get('/api/lyric', function(req, res) {
         const url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
         axios.get(url, {

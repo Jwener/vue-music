@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {debounce} from '../../common/js/util'
+import { debounce } from '../../common/js/util'
 export default {
   data() {
     return {
@@ -68,6 +68,5 @@ export default {
     .icon-dismiss
       font-size:  16px
       color: $color-background
-
 
 </style>

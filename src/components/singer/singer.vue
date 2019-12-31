@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import {getSingerList, singerlist} from '../../api/singer'
-import {ERR_OK} from '../../api/config'
+import { getSingerList } from '../../api/singer'
+import { ERR_OK } from '../../api/config'
 import ListView from '../../base/listview/listview'
-import {mapMutations} from 'vuex'
-import {playlistMixin} from '../../common/js/mixin'
+import { mapMutations } from 'vuex'
+import { playlistMixin } from '../../common/js/mixin'
 import Singer from '../../common/js/singer'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     selectSinger(singer) {
       this.$router.push({
         path: `/singer/${singer.singer_id}`
-      }),
+      })
       this.setSinger(singer)
     },
     _getSingerList() {
@@ -52,7 +52,7 @@ export default {
           city: item.country,
           id: item.singer_id,
           name: item.singer_name,
-          mid: item.singer_mid,
+          mid: item.singer_mid
         }))
       })
       return ret

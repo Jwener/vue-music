@@ -10,10 +10,12 @@
 
 <script>
 export default {
-  props:{
+  props: {
     switches: {
       type: Array,
-      default: []
+      default: function() {
+        return []
+      }
     },
     currentIndex: {
       type: Number,

@@ -25,7 +25,7 @@
 
 <script>
 import Scroll from '../../base/scroll/scroll'
-import {getData} from '../../common/js/dom'
+import { getData } from '../../common/js/dom'
 import Loading from '../../base/loading/loading'
 
 const ANCHOR_HEITHT = 18
@@ -47,7 +47,9 @@ export default {
   props: {
     data: {
       type: Array,
-      default: []
+      default: function() {
+        return []
+      }
     }
   },
   components: {
@@ -57,7 +59,7 @@ export default {
   computed: {
     shortcutList() {
       return this.data.map((group) => {
-        return group.title.substr(0,1)
+        return group.title.substr(0, 1)
       })
     },
     fixedTitle() {
@@ -94,7 +96,6 @@ export default {
     _scrollTo(index) {
       this.scrollY = -this.listHeight[index]
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
-
     },
     _calculateHeight() {
       this.listHeight = []
@@ -122,9 +123,9 @@ export default {
         return
       }
       // 在中间部分滚动
-      for ( let i = 0; i< listHeight.length - 1; i++) {
+      for (let i = 0; i < listHeight.length - 1; i++) {
         let height1 = listHeight[i]
-        let height2 = listHeight[i+1]
+        let height2 = listHeight[i + 1]
         if (-newY >= height1 && -newY < height2) {
           this.currentIndex = i
           this.diff = height2 + newY
@@ -136,8 +137,8 @@ export default {
       this.currentIndex = listHeight.length - 2
     },
     diff(newVal) {
-      let fixedTop = (newVal>0 && newVal<TITLE_HEIGHT) ? newVal-TITLE_HEIGHT : 0
-      if (this.fixedTop ===fixedTop) {
+      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+      if (this.fixedTop === fixedTop) {
         return
       }
       this.fixedTop = fixedTop

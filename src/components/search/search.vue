@@ -41,20 +41,20 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import SearchBox from '../../base/search-box/search-box'
 import Suggest from '../../components/suggest/suggest'
 import SearchList from '../../base/search-list/search-list'
 import Confirm from '../../base/confirm/confirm'
 import Scroll from '../../base/scroll/scroll.vue'
-import {getHotKey} from '../../api/search'
-import {ERR_OK} from '../../api/config'
-import {playlistMixin, searchMixin} from '../../common/js/mixin'
+import { getHotKey } from '../../api/search'
+import { ERR_OK } from '../../api/config'
+import { playlistMixin, searchMixin } from '../../common/js/mixin'
 export default {
   mixins: [playlistMixin, searchMixin],
   data() {
     return {
-      hotKey: [],
+      hotKey: []
       // query: ''
     }
   },
@@ -84,7 +84,6 @@ export default {
       this.$refs.shortcut.refresh()
       this.$refs.searchResult.style.bottom = bottom
       this.$refs.suggest.refresh()
-
     },
     // 引入mixin
     // addQuery(query) {
@@ -111,7 +110,7 @@ export default {
     _getHotKey() {
       getHotKey().then((res) => {
         if (res.code === ERR_OK) {
-          const{special_key, special_url} = res.data
+          // const {special_key, special_url} = res.data
           this.hotKey = res.data.hotkey.slice(0, 10)
           // this.hotKey.unshift({k: special_key, n: special_url})
           // console.log(this.hotKey)

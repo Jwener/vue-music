@@ -49,12 +49,12 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Scroll from '../../base/scroll/scroll'
 import Confirm from '../../base/confirm/confirm'
 import AddSong from '../../components/add-song/add-song'
-import {playerMixin} from '../../common/js/mixin'
-import {playMode} from '../../common/js/config'
+import { playerMixin } from '../../common/js/mixin'
+import { playMode } from '../../common/js/config'
 export default {
   mixins: [playerMixin],
   data() {
@@ -97,7 +97,7 @@ export default {
       return this.currentSong.id === item.id ? 'icon-play' : ''
     },
     selectItem(item, index) {
-      if (this.mode = playMode.random) {
+      if (this.mode === playMode.random) {
         index = this.playlist.findIndex((song) => {
           return song.id === item.id
         })

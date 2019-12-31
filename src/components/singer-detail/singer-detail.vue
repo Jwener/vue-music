@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import jsonp from 'jsonp'
-import {mapGetters} from 'vuex'
-import {getSingerDetail, getSongUrl} from '../../api/singer'
-import {ERR_OK} from '../../api/config'
-import {createSong} from '../../common/js/song'
+// import jsonp from 'jsonp'
+import { mapGetters } from 'vuex'
+import { getSingerDetail } from '../../api/singer'
+import { ERR_OK } from '../../api/config'
+import { createSong } from '../../common/js/song'
 import MusicList from '../../components/music-list/music-list'
 export default {
   data() {
@@ -50,7 +50,7 @@ export default {
       let ret = []
       list.forEach((item) => {
         let {musicData} = item
-        if ( musicData.songid && musicData.albummid) {
+        if (musicData.songid && musicData.albummid) {
           // getSongUrl(musicData.songmid).then((res) => {
           //   if (res.code === ERR_OK) {
           //     const songurl = res.req_0.data.midurlinfo[0].purl
@@ -76,4 +76,3 @@ export default {
   .slide-enter, .slide-leave-to
     transform: translate3d(100%, 0, 0)
 </style>
-

@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     dashOffset() {
-      return (1-this.percent) * this.dashArray
+      return (1 - this.percent) * this.dashArray
     }
   }
 }

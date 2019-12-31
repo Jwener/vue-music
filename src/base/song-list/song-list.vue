@@ -19,7 +19,9 @@ export default {
   props: {
     songs: {
       type: Array,
-      default: []
+      default: function() {
+        return []
+      }
     },
     rank: {
       type: Boolean,
@@ -45,7 +47,7 @@ export default {
         return index + 1
       }
     }
-  },
+  }
 
 }
 </script>

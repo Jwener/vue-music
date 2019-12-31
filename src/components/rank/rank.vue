@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations } from 'vuex'
 import Scroll from '../../base/scroll/scroll'
 import Loading from '../../base/loading/loading'
-import {playlistMixin} from '../../common/js/mixin'
-import {getTopList} from '../../api/rank'
-import {ERR_OK} from '../../api/config'
+import { playlistMixin } from '../../common/js/mixin'
+import { getTopList } from '../../api/rank'
+import { ERR_OK } from '../../api/config'
 
 export default {
   mixins: [playlistMixin],

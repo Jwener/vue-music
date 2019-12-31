@@ -38,10 +38,10 @@
 import Loading from '../../base/loading/loading'
 import Slider from '../../base/slider/slider'
 import Scroll from '../../base/scroll/scroll'
-import {getRecommend, getDiscList} from '../../api/recommend'
-import {ERR_OK} from '../../api/config'
-import {playlistMixin} from '../../common/js/mixin'
-import {mapMutations} from 'vuex'
+import { getRecommend, getDiscList } from '../../api/recommend'
+import { ERR_OK } from '../../api/config'
+import { playlistMixin } from '../../common/js/mixin'
+import { mapMutations } from 'vuex'
 
 export default {
   mixins: [playlistMixin],

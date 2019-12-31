@@ -1,6 +1,6 @@
 import jsonp from '../common/js/jsonp'
 import axios from 'axios'
-import {commonParams, options} from './config'
+import { commonParams, options } from './config'
 
 export function getHotKey() {
   const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'

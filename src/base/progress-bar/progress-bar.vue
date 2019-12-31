@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {prefixStyle} from '../../common/js/dom'
+import { prefixStyle } from '../../common/js/dom'
 const transform = prefixStyle('transform')
 const pregrossBtnWidth = 16
 export default {
@@ -49,7 +49,7 @@ export default {
     },
     progressClick(e) {
       const rect = this.$refs.progressBar.getBoundingClientRect()
-      const offsetWidth = e.pageX -rect.left
+      const offsetWidth = e.pageX - rect.left
       this._offset(offsetWidth)
       // this._offset(e.offsetX)
       this._triggerPercent()
